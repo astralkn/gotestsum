@@ -176,7 +176,7 @@ func lookEnvWithDefault(key, defValue string) string {
 
 func contains(s []*operator.FailedTest, e *operator.FailedTest) bool {
 	for _, a := range s {
-		if a.Title == e.Title && a.Issues == e.Issues {
+		if a.Title == e.Title /*&& a.Issues == e.Issues*/ {
 			return true
 		}
 	}
