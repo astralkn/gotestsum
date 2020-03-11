@@ -5,8 +5,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/astralkn/gotestmng/pkg/junitxml"
-	"github.com/astralkn/gotestmng/pkg/options"
+	"github.com/astralkn/gotestsum/pkg/junitxml"
+	"github.com/astralkn/gotestsum/pkg/options"
 	"gotest.tools/gotestsum/testjson"
 )
 

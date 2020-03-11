@@ -4,7 +4,7 @@ package operator
 import (
 	"context"
 
-	"github.com/astralkn/gotestmng/pkg/options"
+	"github.com/astralkn/gotestsum/pkg/options"
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
 )

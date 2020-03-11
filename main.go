@@ -5,9 +5,9 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/astralkn/gotestmng/pkg/gotestsum"
-	"github.com/astralkn/gotestmng/pkg/operator"
-	"github.com/astralkn/gotestmng/pkg/options"
+	"github.com/astralkn/gotestsum/pkg/gotestsum"
+	"github.com/astralkn/gotestsum/pkg/operator"
+	"github.com/astralkn/gotestsum/pkg/options"
 	"github.com/fatih/color"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/pflag"
