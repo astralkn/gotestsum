@@ -1,4 +1,4 @@
-module github.com/astralkn/gotestmng
+module github.com/astralkn/gotestsum
 
 go 1.13
 
