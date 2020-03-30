@@ -41,7 +41,7 @@ func main() {
 		log.Printf("gotestmng version %s\n", version)
 		os.Exit(0)
 	}
-	if opts.Post == opts.GitUnAuth {
+	if opts.Post == true && opts.GitUnAuth == false {
 		log.Error("can not post issues without authentication")
 		os.Exit(1)
 	}
@@ -60,7 +60,7 @@ func main() {
 }
 
 func setupFlags(name string) (*pflag.FlagSet, *options.Options) {
-	opts := &options.Options{
+	opts := options.Options{
 		NoSummary:                    options.NewNoSummaryValue(),
 		JunitTestCaseClassnameFormat: &options.JunitFieldFormatValue{},
 		JunitTestSuiteNameFormat:     &options.JunitFieldFormatValue{},
@@ -100,7 +100,7 @@ Formats:
 	flags.Var(opts.JunitTestCaseClassnameFormat, "junitfile-testcase-classname", "format the testcase classname field as: "+options.JunitFieldFormatValues)
 	flags.BoolVar(&opts.Version, "version", false, "show version and exit")
 	flags.BoolVar(&opts.GitUnAuth, "unauth", false, "use unauthenticated git operator")
-	return flags, opts
+	return flags, &opts
 }
 
 func run(opts *options.Options) error {
@@ -111,7 +111,7 @@ func run(opts *options.Options) error {
 			return err
 		}
 	}
-	junitOperator := &operator.JUnitOperator{}
+	var junitOperator operator.JUnitOperator
 	failedTests := junitOperator.GetFailedTests(opts)
 	var gitOperator *operator.GitOperator
 	if opts.GitUnAuth {
@@ -125,18 +125,18 @@ func run(opts *options.Options) error {
 		return err
 	}
 
-	var newIssues []*operator.FailedTest
-	var solvedIssues []*operator.FailedTest
+	var newIssues []operator.FailedTest
+	var solvedIssues []operator.FailedTest
 
 	for _, t := range failedTests {
 		if !contains(knownIssues, t) {
-			newIssues = append(newIssues, t)
+			newIssues = append(newIssues, *t)
 		}
 	}
 
 	for _, t := range knownIssues {
 		if !contains(failedTests, t) {
-			solvedIssues = append(solvedIssues, t)
+			solvedIssues = append(solvedIssues, *t)
 		}
 	}
 	for _, t := range newIssues {
@@ -145,18 +145,18 @@ func run(opts *options.Options) error {
 
 	if opts.Post {
 		for _, i := range newIssues {
-			err = gitOperator.PostNewIssue(i)
+			err = gitOperator.PostNewIssue(&i)
 			if err != nil {
 				return err
 			}
-			log.Println("New issue created on git", *i)
+			log.Println("New issue created on git", i)
 		}
 		for _, i := range solvedIssues {
-			err = gitOperator.CloseSolvedIssue(i)
+			err = gitOperator.CloseSolvedIssue(&i)
 			if err != nil {
 				return err
 			}
-			log.Println("Issue closed on git", *i)
+			log.Println("Issue closed on git", i)
 		}
 	}
 
@@ -170,8 +170,9 @@ func run(opts *options.Options) error {
 func lookEnvWithDefault(key, defValue string) string {
 	if value := os.Getenv(key); value != "" {
 		return value
+	} else {
+		return defValue
 	}
-	return defValue
 }
 
 func contains(s []*operator.FailedTest, e *operator.FailedTest) bool {
