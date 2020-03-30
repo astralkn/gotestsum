@@ -129,3 +129,7 @@ func Test_run(t *testing.T) {
 		})
 	}
 }
+
+//func TestFailExample(t *testing.T) {
+//	t.Fatal("This test fails on purpose")
+//}

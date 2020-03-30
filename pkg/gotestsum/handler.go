@@ -50,7 +50,7 @@ func newEventHandler(opts *options.Options, stdout io.Writer, stderr io.Writer) 
 	if formatter == nil {
 		return nil, fmt.Errorf("unknown format %s", opts.Format)
 	}
-	handler := &eventHandler{
+	handler := eventHandler{
 		formatter: formatter,
 		err:       stderr,
 	}
@@ -58,10 +58,10 @@ func newEventHandler(opts *options.Options, stdout io.Writer, stderr io.Writer) 
 	if opts.JsonFile != "" {
 		handler.jsonFile, err = os.Create(opts.JsonFile)
 		if err != nil {
-			return handler, fmt.Errorf("failed to open JSON file %w", err)
+			return &handler, fmt.Errorf("failed to open JSON file %w", err)
 		}
 	}
-	return handler, nil
+	return &handler, nil
 }
 
 func writeJUnitFile(opts *options.Options, execution *testjson.Execution) error {
