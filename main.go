@@ -41,9 +41,11 @@ func main() {
 		log.Printf("gotestmng version %s\n", version)
 		os.Exit(0)
 	}
-	if opts.Post == true && opts.GitUnAuth == false {
-		log.Error("can not post issues without authentication")
-		os.Exit(1)
+	if opts.Post == true {
+		if opts.GitUnAuth == true {
+			log.Error("can not post issues without authentication")
+			os.Exit(1)
+		}
 	}
 	err := run(opts)
 	switch err.(type) {
