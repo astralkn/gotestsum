@@ -2,7 +2,7 @@
 package options
 
 import (
-	"github.com/astralkn/gotestsum/pkg/junitxml"
+	"github.com/istratem/gotestsum/pkg/junitxml"
 )
 
 //Options stores flags value

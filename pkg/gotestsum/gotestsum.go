@@ -10,7 +10,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/astralkn/gotestsum/pkg/options"
+	"github.com/istratem/gotestsum/pkg/options"
 	"gotest.tools/gotestsum/testjson"
 )
 

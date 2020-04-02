@@ -1,8 +1,9 @@
-module github.com/IstrateM/gotestsum
+module github.com/istratem/gotestsum
 
 go 1.13
 
 require (
+	github.com/astralkn/gotestsum v0.0.21
 	github.com/fatih/color v1.9.0
 	github.com/google/go-cmp v0.4.0
 	github.com/google/go-github v17.0.0+incompatible

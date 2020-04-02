@@ -2,8 +2,8 @@ package operator
 
 import (
 	"context"
-	"github.com/astralkn/gotestsum/pkg/options"
 	"github.com/google/go-github/github"
+	"github.com/istratem/gotestsum/pkg/options"
 	"reflect"
 	"testing"
 )

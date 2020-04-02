@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/astralkn/gotestsum/pkg/operator"
-	"github.com/astralkn/gotestsum/pkg/options"
+	"github.com/istratem/gotestsum/pkg/operator"
+	"github.com/istratem/gotestsum/pkg/options"
 	"os"
 	"testing"
 )

@@ -5,10 +5,10 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/astralkn/gotestsum/pkg/gotestsum"
-	"github.com/astralkn/gotestsum/pkg/operator"
-	"github.com/astralkn/gotestsum/pkg/options"
 	"github.com/fatih/color"
+	"github.com/istratem/gotestsum/pkg/gotestsum"
+	"github.com/istratem/gotestsum/pkg/operator"
+	"github.com/istratem/gotestsum/pkg/options"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/pflag"
 	"gotest.tools/gotestsum/testjson"
