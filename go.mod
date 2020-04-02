@@ -1,4 +1,4 @@
-module github.com/astralkn/gotestsum
+module github.com/IstrateM/gotestsum
 
 go 1.13
 
